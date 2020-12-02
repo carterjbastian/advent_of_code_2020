@@ -20,9 +20,10 @@ args = parser.parse_args()
 # Set global state
 lib.config.DEBUG_MODE = args.debug
 lib.config.TEST_MODE = args.test
+lib.config.DAY_NUMBER = args.day
 
 # Import helper functions
-from lib.helpers import log
+from lib.helpers import log, get_strings_by_lines
 
 if __name__ == "__main__":
     # import the library dynamically
@@ -30,12 +31,33 @@ if __name__ == "__main__":
     solver = importlib.import_module(lib_name)
 
     # Choose day 1 or day 2
-    if args.part == 1:
-        print(solver.part_1())
-    elif args.part == 2:
-        print(solver.part_2())
+    if args.test:
+        if args.part != 2:
+            log('\nTesting part 1...')
+            computed = solver.part_1()
+            all_answers = get_strings_by_lines('answers-part-1.txt')
+            answer = all_answers[args.day - 1]
+            if str(computed) == answer:
+                print(f"Part 1: PASSED ({computed})")
+            else:
+                print(f"Part 1: FAILED")
+                print(f"\tcomputed: {computed}")
+                print(f"\tintended: {answer}")
+        if args.part != 1:
+            log('\nTesting part 2...')
+            computed = solver.part_2()
+            all_answers = get_strings_by_lines('answers-part-2.txt')
+            answer = all_answers[args.day - 1]
+            if str(computed) == answer:
+                print(f"Part 2: PASSED ({computed})")
+            else:
+                print(f"Part 2: FAILED")
+                print(f"\tcomputed: {computed}")
+                print(f"\tintended: {answer}")
     else:
-        print(solver.part_1())
-        print(solver.part_2())
-
-    log("hello world")
+        if args.part != 2:
+            log('\nstarting part 1...')
+            print(solver.part_1())
+        if args.part != 1:
+            log('\nstarting part 2...')
+            print(solver.part_2())
