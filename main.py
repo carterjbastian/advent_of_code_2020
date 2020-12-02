@@ -1,6 +1,8 @@
 #!/bin/bash python
 import argparse
 import lib.config
+import problems
+import importlib
 
 parser = argparse.ArgumentParser(prog="advent_of_code_2020")
 
@@ -23,4 +25,17 @@ lib.config.TEST_MODE = args.test
 from lib.helpers import log
 
 if __name__ == "__main__":
+    # import the library dynamically
+    lib_name = f"problems.day_{args.day}"
+    solver = importlib.import_module(lib_name)
+
+    # Choose day 1 or day 2
+    if args.part == 1:
+        print(solver.part_1())
+    elif args.part == 2:
+        print(solver.part_2())
+    else:
+        print(solver.part_1())
+        print(solver.part_2())
+
     log("hello world")
