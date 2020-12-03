@@ -1,4 +1,3 @@
-from parse import parse
 from lib.helpers import log, get_strings_by_lines
 
 def count_trees(rows, slope):
