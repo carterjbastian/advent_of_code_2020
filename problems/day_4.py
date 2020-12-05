@@ -81,6 +81,7 @@ def validate_passport(ppt):
 
 def part_1():
     rows = get_input('4.txt')
+
     passport_strings = [
         passport.replace('\n', ' ') for passport in rows.split('\n\n')
     ]
