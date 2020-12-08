@@ -1,8 +1,6 @@
-import math
 from lib.helpers import log, get_input
 
-
-def part_1():
+def part_1(): 
     groups = get_input('6.txt').split('\n\n')
     grouped_people = [
         group.split('\n') for group in groups
