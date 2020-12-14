@@ -18,7 +18,13 @@ def part_2():
     earliest, bus_list = get_strings_by_lines('13.txt')
     busses = [ bus for bus in bus_list.split(',') if bus ]
 
-    # Fulfill the constraints one at a time
+    # Fulfill the constraints one at a time - Once you find a number satisfying
+    # Two divisors, future values must be a multiple of that value.
+    # AKA for divisors w,x,y,z the minimum value satisfying y must be
+    #   <the minimum value satisfying w,x> + (w * x)
+    # And then the minimum value satisfying z must be
+    #   <the minimum value satisfying w,x,y> + (w * x * y)
+    # ETC.
     current_time = 0
     inc = 1
     for idx in range(len(busses)):
