@@ -90,4 +90,3 @@ def part_2():
 
     log(memory)
     return sum(memory.values())
-    return None
